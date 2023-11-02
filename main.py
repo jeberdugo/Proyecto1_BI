@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request,render_template
 from flask_cors import CORS, cross_origin
 import joblib
 import pandas as pd
@@ -28,6 +28,14 @@ def predict():
 
     # Devuelve la predicción como respuesta
     return {'prediccion': int(prediccion[0])+3}
+
+@app.route('/', methods=['GET'])
+def root():
+    return render_template('index.html') # Return index.html 
+
+@app.route('/p', methods=['GET'])
+def a():
+    return 'hola'
 
 @app.route('/predict_file', methods=['POST'])
 @cross_origin()
